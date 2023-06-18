@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "description": "202304-W7CH1-Alex-Ragno",
+  "description": "202304-W7CH5-Alex-Ragno-Backend",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "start:new": "node --watch dist/index.js",
-    "server": "cross-env DEBUG=W6* PORT=6500 nodemon dist/index.js",
+    "server": "cross-env DEBUG=W6* PORT=6555 nodemon dist/index.js",
     "server2": "nodemon dist/index.js",
     "build": "tsc --watch",
     "build:prod": "tsc",
