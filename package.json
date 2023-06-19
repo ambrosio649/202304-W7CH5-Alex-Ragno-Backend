@@ -4,12 +4,12 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start:new": "node --watch dist/index.js",
-    "server": "cross-env DEBUG=W6* PORT=6555 nodemon dist/index.js",
-    "server2": "nodemon dist/index.js",
-    "build": "tsc --watch",
-    "build:prod": "tsc",
-    "start": "concurrently \"npm:server\" \"npm:build\"",
+    "start": "node dist/index.js",
+    "start:watch": "node --watch dist/index.js",
+    "server": "cross-env DEBUG=W7CH5* PORT=6555 nodemon dist/index.js",
+    "build:dev": "tsc --watch",
+    "build": "tsc",
+    "start:dev": "concurrently \"npm:server\" \"npm:build:dev\"",
     "test": "jest --watchAll --coverage",
     "test:prod": "jest --watchAll --coverage --watchAll=false --passWithNoTests"
   },
@@ -25,6 +25,7 @@
     "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/morgan": "^1.9.4",
+    "@types/multer": "^1.4.7",
     "@types/node": "^20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",
@@ -52,6 +53,7 @@
     "inquirer": "^9.2.7",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
   }
 }

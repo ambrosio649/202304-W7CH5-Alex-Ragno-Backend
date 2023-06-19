@@ -28,6 +28,15 @@ const UserSchema = new Schema<User>({
       ref: 'User',
     },
   ],
+  avatar: {
+    type: {
+      urlOriginal: { type: String },
+      url: { type: String },
+      mimetype: { type: String },
+      size: { type: Number },
+    },
+    required: true,
+  },
 });
 
 UserSchema.set('toJSON', {
