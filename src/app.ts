@@ -1,9 +1,10 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import createDebug from 'debug';
 import { errorHandler } from './middleware/error.js';
 import { userRouter } from './routers/user.router.js';
+
+import createDebug from 'debug';
 const debug = createDebug('W6:App');
 
 export const app = express();
@@ -25,7 +26,7 @@ app.use((_req, _res, next) => {
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('Hello Express!');
 });
 

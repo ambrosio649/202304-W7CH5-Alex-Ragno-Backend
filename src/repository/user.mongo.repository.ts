@@ -18,7 +18,10 @@ export class UserRepo implements Repo<User> {
     key: string;
     value: unknown;
   }): Promise<User[]> {
-    const result = await UserModel.find({ [key]: value }).exec();
+    const result = await UserModel.find({ [key]: value })
+      .populate('friends', { id: 0, friends: 0, enemies: 0 })
+      .populate('enemies', { id: 0, friends: 0, enemies: 0 })
+      .exec();
     return result;
   }
 
@@ -28,13 +31,19 @@ export class UserRepo implements Repo<User> {
   }
 
   async query(): Promise<User[]> {
-    const currentData = await UserModel.find().exec();
+    const currentData = await UserModel.find()
+      .populate('friends', { id: 0, friends: 0, enemies: 0 })
+      .populate('enemies', { id: 0, friends: 0, enemies: 0 })
+      .exec();
 
     return currentData;
   }
 
   async queryById(id: string): Promise<User> {
-    const result = await UserModel.findById(id).exec();
+    const result = await UserModel.findById(id)
+      .populate('friends', { id: 0, friends: 0, enemies: 0 })
+      .populate('enemies', { id: 0, friends: 0, enemies: 0 })
+      .exec();
 
     if (result === null)
       throw new HttpError(404, 'Not found', 'Bad id for the query');
@@ -45,7 +54,10 @@ export class UserRepo implements Repo<User> {
   async update(id: string, data: Partial<User>): Promise<User> {
     const newUser = await UserModel.findByIdAndUpdate(id, data, {
       new: true,
-    }).exec();
+    })
+      .populate('friends', { id: 0 })
+      .populate('enemies', { id: 0 })
+      .exec();
 
     if (newUser === null)
       throw new HttpError(404, 'Not found', 'Bad id for the update');

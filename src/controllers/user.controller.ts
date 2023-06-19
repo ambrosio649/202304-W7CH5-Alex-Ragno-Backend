@@ -83,8 +83,7 @@ export class UserController extends Controller<User> {
       const newUser = await this.repo.queryById(req.params.id);
 
       if (req.path.includes('friend')) {
-        if (userId === '648de4c68adfd51807f6a24e')
-          throw new HttpError(409, 'Conflict', 'Cannot add friends');
+        if (!userId) throw new HttpError(409, 'Conflict', 'Cannot add friends');
         user.friends.push(newUser);
         await this.repo.update(userId, user);
         await this.repo.update(req.params.id, newUser);
